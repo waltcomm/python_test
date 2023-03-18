@@ -26,7 +26,7 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 def update_user(db: Session, user: schemas.User):
     db_user: schemas.User
-    db_user = db.query(models.User).get(user.id)
+    db_user = Session.get(db, models.User, user.id)
     db_user.first_name = user.first_name
     db_user.last_name = user.last_name
     db.commit()

@@ -22,11 +22,11 @@ def get_db():
 async def root():
     return {"message": "sql_app v1.0"}
 
-@app.post("/create_user/", response_model=schemas.User)
+@app.put("/create_user/", response_model=schemas.User)
 async def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db, user)
 
-@app.post("/update_user/", response_model=schemas.User)
+@app.put("/update_user/", response_model=schemas.User)
 async def update_user(user: schemas.User, db: Session = Depends(get_db)):
     return crud.update_user(db, user)
 
